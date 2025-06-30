@@ -35,19 +35,38 @@ model Employees {
   @@map("employees")
 }
 
-// model Accounts {
-//   @@map("accounts")
-// }
+model Accounts {
+  id            String   @id @default(uuid())
+  userId        String   @map("user_id")
+  accountNumber String   @unique @map("account_number")
+  balance       Decimal  @default(0.00)
+  currency      String
+  openedDate    DateTime
+  isActive      Boolean  @default(true) @map("is_active")
 
-// model Cards {
+  @@map("accounts")
+}
 
-//   @@map("cards")
-// }
+model Cards {
+  id          String   @id @default(uuid())
+  accountId   String   @map("account_id")
+  cardNumber  String  @map("card_number")
+  cardType    String @map("card_type")
+  expireDate  DateTime @map("expire_date")
+  cvv         String
+  issuedDate DateTime @map("issued_date")
+  isActive   Boolean @map("is_active")
+  dailyLimit DateTime @map("daily_limit")
+
+  @@map("cards")
+}
 
 // model Transactions {
+
 //   @@map("transactions")
 // }
 
-// model Payments{
+// model Payments {
+
 //   @@map("payments")
 // }
