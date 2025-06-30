@@ -14,12 +14,40 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model User {
+model Users {
   id       String @id @default(uuid())
   fullname String
   password String
   phone    String
   email    String
+
+  @@map("users")
 }
 
+model Employees {
+  id         String   @id @default(uuid())
+  userId     String   @map("user_id")
+  position   String
+  department String
+  hireDate   DateTime @map("hire_date")
+  isActive   Boolean  @map("is_active")
 
+  @@map("employees")
+}
+
+// model Accounts {
+//   @@map("accounts")
+// }
+
+// model Cards {
+
+//   @@map("cards")
+// }
+
+// model Transactions {
+//   @@map("transactions")
+// }
+
+// model Payments{
+//   @@map("payments")
+// }

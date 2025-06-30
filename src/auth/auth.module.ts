@@ -6,4 +6,8 @@ import { AuthController } from './auth.controller';
   controllers: [AuthController],
   providers: [AuthService],
 })
-export class AuthModule {}
+export class AuthModule {
+  name(params:string) {
+    console.log('ebat')
+  }
+}
