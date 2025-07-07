@@ -15,17 +15,16 @@ datasource db {
 }
 
 model Users {
-  id       String @id @default(uuid())
-  fullname String
-  password String
-  phone    String
-  email    String
-  createdAt DateTime  @default(now()) @map("created_at")
+  id             String           @id @default(uuid())
+  fullname       String
+  password       String
+  phone          String
+  email          String
+  createdAt      DateTime         @default(now()) @map("created_at")
   employee       Employees?
   accounts       Accounts[]
   supportRequest SupportRequest[]
   chat           Chat[]
-
 
   @@map("users")
 }
@@ -142,7 +141,7 @@ model Chat {
 
   supportRequest SupportRequest @relation(fields: [requestId], references: [id])
   user           Users          @relation(fields: [userId], references: [id])
-  employee       Employees?      @relation(fields: [employeeId], references: [id])
+  employee       Employees?     @relation(fields: [employeeId], references: [id])
   messages       Message[]
   usersId        String?
   employeesId    String?
