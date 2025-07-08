@@ -11,7 +11,7 @@ export class AuthController {
     return await this.authService.login(res, data);
   }
 
-  @Post('sign-up')
+  @Post('sign-in')
   async registerUser(@Res({ passthrough: true }) res: Response, @Body() data: RegisterRequest) {
     return await this.authService.register(data);
   }

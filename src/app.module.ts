@@ -5,6 +5,11 @@ import { AuthModule } from './auth/auth.module';
 
 
 @Module({
-  imports: [UsersModule, AuthModule, PrismaModule],
+  imports:
+    [
+      PrismaModule,
+      UsersModule,
+      AuthModule,
+    ],
 })
-export class AppModule {}
+export class AppModule { }
