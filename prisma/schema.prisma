@@ -14,7 +14,7 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model Users {
+model User {
   id             String           @id @default(uuid())
   fullname       String
   password       String
@@ -37,7 +37,7 @@ model Employees {
   hireDate   DateTime @default(now()) @map("hire_date")
   isActive   Boolean  @map("is_active")
 
-  user           Users            @relation(fields: [userId], references: [id])
+  user           User             @relation(fields: [userId], references: [id])
   supportRequest SupportRequest[]
   chat           Chat[]
 
@@ -53,7 +53,7 @@ model Accounts {
   openedDate    DateTime
   isActive      Boolean  @default(true) @map("is_active")
 
-  user         Users          @relation(fields: [userId], references: [id])
+  user         User           @relation(fields: [userId], references: [id])
   cards        Cards[]
   transactions Transactions[]
   payments     Payments[]
@@ -123,7 +123,7 @@ model SupportRequest {
   updatedAt   DateTime  @updatedAt @map("updated_at")
   closedAt    DateTime? @map("closed_at")
 
-  user        Users      @relation(fields: [userId], references: [id])
+  user        User       @relation(fields: [userId], references: [id])
   employee    Employees? @relation(fields: [employeeId], references: [id])
   chat        Chat?
   employeesId String?
@@ -140,7 +140,7 @@ model Chat {
   isActive      Boolean   @default(true) @map("is_active")
 
   supportRequest SupportRequest @relation(fields: [requestId], references: [id])
-  user           Users          @relation(fields: [userId], references: [id])
+  user           User           @relation(fields: [userId], references: [id])
   employee       Employees?     @relation(fields: [employeeId], references: [id])
   messages       Message[]
   usersId        String?
